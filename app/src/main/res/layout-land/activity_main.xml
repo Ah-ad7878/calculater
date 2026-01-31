@@ -29,6 +29,39 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/unit_measure"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="628dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/grey"
+        android:elevation="8dp"
+        app:cornerRadius="40dp"
+        app:icon="@drawable/baseline_scale_24"
+        app:iconGravity="textStart"
+        app:iconSize="22sp"
+        app:iconTint="@color/black"
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/ed_screen"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/trigno"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/grey"
+        android:elevation="8dp"
+        app:cornerRadius="40dp"
+        app:icon="@drawable/trigonometry"
+        app:iconGravity="textStart"
+        app:iconSize="22sp"
+        app:iconTint="@color/black"
+        app:layout_constraintStart_toEndOf="@id/unit_measure"
+        app:layout_constraintTop_toBottomOf="@id/ed_screen" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_clear"
         style="@style/material_button"
         android:layout_marginStart="228dp"
