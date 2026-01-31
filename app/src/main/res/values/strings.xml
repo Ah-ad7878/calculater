@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">calculater</string>
+    <string name="zero">0</string>
+    <string name="clr">clr</string>
+    <string name="del">del</string>
+    <string name="module">%</string>
+    <string name="divide">/</string>
+    <string name="seven">7</string>
+    <string name="Eight">8</string>
+    <string name="multiply">*</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="subtract">-</string>
+    <string name="one">1</string>
+    <string name="Two">2</string>
+    <string name="Three">3</string>
+    <string name="Add">+</string>
+    <string name="Dot">.</string>
+    <string name="Zero">0</string>
+    <string name="Equal">=</string>
+    <string name="Nine">9</string>
+    <string name="unit_converter">Unit Converter</string>
+    <string name="area">Area</string>
+    <string name="length">Length</string>
+    <string name="temperature">Temperature</string>
+    <string name="data">Data</string>
+    <string name="tax">Tax</string>
+    <string name="mass">Mass</string>
+    <string name="from_unit">From unit</string>
+    <string name="to_unit">To unit</string>
+</resources>
