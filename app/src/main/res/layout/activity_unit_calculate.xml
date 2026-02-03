@@ -176,7 +176,7 @@
         app:layout_constraintTop_toBottomOf="@id/line2" />
 
 
-    <EditText
+    <TextView
         android:id="@+id/To_unit"
         android:layout_width="260dp"
         android:layout_height="60dp"
@@ -185,7 +185,6 @@
         android:background="@drawable/unit_screen_bg"
         android:gravity="center"
         android:hint="@string/to_unit"
-        android:inputType="numberDecimal"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="19sp"

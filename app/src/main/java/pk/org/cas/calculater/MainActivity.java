@@ -83,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+                if (isOperator(buttonText.charAt(0))) {
+                    for (int i = 0; i < currentText.length(); i++) {
+                        if (isOperator(currentText.charAt(i))) {
+                            Toast.makeText(MainActivity.this, "Only two operands allowed at a time", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                }
+
 
                 if (currentText.length() == 0) {
                     if (buttonText.equals("+") || buttonText.equals("-") || buttonText.equals("*") ||
