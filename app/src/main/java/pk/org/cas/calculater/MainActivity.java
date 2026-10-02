@@ -167,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
         char op = ' ';
         int opIndex = -1;
 
-        // Find the operator
         if (expression.contains("+")) {
             op = '+';
             opIndex = expression.indexOf('+');

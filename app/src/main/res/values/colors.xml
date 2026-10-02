@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Dark Modern Theme Palette -->
+    <color name="bg_dark">#0F172A</color>
+    <color name="surface_dark">#1E293B</color>
+    <color name="surface_variant_dark">#334155</color>
+    <color name="surface_border">#2E3C51</color>
+
+    <!-- Accents -->
+    <color name="primary_accent">#6366F1</color>
+    <color name="primary_accent_light">#818CF8</color>
+    <color name="secondary_accent">#38BDF8</color>
+    <color name="equal_accent">#10B981</color>
+    <color name="equal_accent_pressed">#059669</color>
+    <color name="clear_accent">#FB7185</color>
+    <color name="clear_bg">#3F1D28</color>
+    <color name="operator_bg">#2D3A4E</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_muted">#64748B</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_gray">#F0F0F0</color>
-    <color name="grey">#D3D3D3</color>
-    <color name="light_pink">#FFB6C1</color>
-    <color name="pink">#FFC0CB</color>
-    <color name="Aquemarine">#8AE9C1</color>
-    <color name="spinner_bg">#A0EEC0</color>
-    <color name="red">#491606</color>
+
+    <!-- Backward compatibility color definitions -->
+    <color name="light_gray">#0F172A</color>
+    <color name="grey">#1E293B</color>
+    <color name="light_pink">#818CF8</color>
+    <color name="pink">#10B981</color>
+    <color name="Aquemarine">#1E293B</color>
+    <color name="spinner_bg">#1E293B</color>
+    <color name="red">#F8FAFC</color>
 </resources>

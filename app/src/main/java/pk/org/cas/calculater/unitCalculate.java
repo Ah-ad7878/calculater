@@ -138,6 +138,7 @@ public class unitCalculate extends AppCompatActivity {
             if (checkedId == View.NO_ID) return;
             
             Chip checkedChip = findViewById(checkedId);
+            if (checkedChip == null) return;
             String category = checkedChip.getText().toString();
             double result = 0;
 
@@ -165,7 +166,7 @@ public class unitCalculate extends AppCompatActivity {
             if (result == (long) result) {
                 To_unit.setText(String.valueOf((long) result));
             } else {
-                To_unit.setText(String.format("%.4f", result));
+                To_unit.setText(String.format(java.util.Locale.US, "%.4f", result));
             }
         } catch (NumberFormatException e) {
             To_unit.setText("");

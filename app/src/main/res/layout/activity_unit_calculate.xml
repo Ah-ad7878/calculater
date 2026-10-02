@@ -5,28 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/bg_dark"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     tools:context=".unitCalculate">
 
+    <!-- Top Header Navigation -->
     <TextView
         android:id="@+id/unit_measure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
+        android:drawablePadding="12dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
         android:text="@string/unit_converter"
-        android:textColor="@color/black"
-        android:textSize="26sp"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/baseline_arrow_back_ios_24"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/guideline_hori" />
+        app:drawableTint="@color/text_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Category Chips Scroll -->
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,9 +43,7 @@
             android:id="@+id/cip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:chipSpacingHorizontal="8dp"
+            app:chipSpacingHorizontal="10dp"
             app:selectionRequired="true"
             app:singleLine="true"
             app:singleSelection="true">
@@ -49,10 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:text="@string/area"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="@string/area" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/length_chip"
@@ -60,10 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:text="@string/length"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="@string/length" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/tem_chip"
@@ -71,10 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:text="@string/temperature"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:text="@string/temperature" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/data_chip"
@@ -82,10 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:text="@string/data"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="@string/data" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/tax_chip"
@@ -93,10 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:text="@string/tax"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="@string/tax" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mass_chip"
@@ -104,101 +94,154 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:text="@string/mass"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="@string/mass" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/black"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_one"
+    <!-- From Unit Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/from_card"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/spinner_bg"
-        android:popupBackground="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/surface_dark"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="3dp"
+        app:strokeColor="@color/surface_border"
+        app:strokeWidth="1.5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
+        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView">
 
-    <EditText
-        android:id="@+id/from_unit"
-        android:layout_width="260dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/unit_screen_bg"
-        android:gravity="center"
-        android:hint="@string/from_unit"
-        android:inputType="numberDecimal"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="19sp"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/spinner_one" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <View
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/black"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/from_unit" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FROM"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_one"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/spinner_bg"
+                android:popupBackground="@color/surface_dark" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_2"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/spinner_bg"
-        android:popupBackground="@color/white"
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/surface_border" />
+
+            <EditText
+                android:id="@+id/from_unit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@null"
+                android:gravity="center_vertical|start"
+                android:hint="@string/from_unit"
+                android:inputType="numberDecimal"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_muted"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Decorative Arrow Indicator -->
+    <ImageView
+        android:id="@+id/swap_indicator"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/edittext_background"
+        android:elevation="6dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_scale_24"
+        app:tint="@color/secondary_accent"
+        app:layout_constraintBottom_toTopOf="@id/to_card"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line2" />
+        app:layout_constraintTop_toBottomOf="@id/from_card" />
 
+    <!-- To Unit Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/to_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/surface_dark"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="3dp"
+        app:strokeColor="@color/primary_accent"
+        app:strokeWidth="1.5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/from_card">
 
-    <TextView
-        android:id="@+id/To_unit"
-        android:layout_width="260dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/unit_screen_bg"
-        android:gravity="center"
-        android:hint="@string/to_unit"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="19sp"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/spinner_2" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TO (RESULT)"
+                android:textColor="@color/primary_accent_light"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_2"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/spinner_bg"
+                android:popupBackground="@color/surface_dark" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/surface_border" />
+
+            <TextView
+                android:id="@+id/To_unit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center_vertical|start"
+                android:hint="@string/to_unit"
+                android:textColor="@color/secondary_accent"
+                android:textColorHint="@color/text_muted"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <View
         android:id="@+id/line3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/black"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/To_unit" />
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/to_card" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hori"

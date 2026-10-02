@@ -5,248 +5,312 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/bg_dark"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
+    <!-- Top Display Screen -->
     <TextView
         android:id="@+id/ed_screen"
-        android:layout_width="365dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/edittext_background"
-        android:elevation="8dp"
+        android:elevation="4dp"
         android:gravity="end|center_vertical"
         android:hint="@string/zero"
         android:inputType="text"
         android:maxLength="15"
         android:maxLines="1"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="32sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_muted"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Utility Row -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/unit_measure"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/grey"
-        android:elevation="8dp"
-        app:cornerRadius="40dp"
+        style="@style/material_button_unit_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/unit_converter"
         app:icon="@drawable/baseline_scale_24"
         app:iconGravity="textStart"
-        app:iconSize="22sp"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintTop_toBottomOf="@id/ed_screen"
-        tools:ignore="MissingConstraints" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/trigno"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/grey"
-        android:elevation="8dp"
-        app:cornerRadius="40dp"
-        app:icon="@drawable/trigonometry"
-        app:iconGravity="textStart"
-        app:iconSize="22sp"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toEndOf="@id/unit_measure"
+        app:iconSize="20dp"
+        app:iconTint="@color/secondary_accent"
+        app:layout_constraintStart_toStartOf="@id/ed_screen"
         app:layout_constraintTop_toBottomOf="@id/ed_screen" />
 
+    <!-- Keypad Row 1: Clear, Del, %, / -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_clear"
-        style="@style/material_button"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="76dp"
+        style="@style/material_button_clear"
+        android:layout_width="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/clr"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/ed_screen" />
+        app:layout_constraintEnd_toStartOf="@id/mb_del"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/unit_measure" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_del"
-        style="@style/material_button"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="76dp"
+        style="@style/material_button_clear"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/del"
-        app:layout_constraintStart_toEndOf="@+id/mb_clear"
-        app:layout_constraintTop_toBottomOf="@+id/ed_screen" />
+        app:layout_constraintBottom_toBottomOf="@id/mb_clear"
+        app:layout_constraintEnd_toStartOf="@id/mb_modules"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/mb_clear"
+        app:layout_constraintTop_toTopOf="@id/mb_clear" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_modules"
-        style="@style/material_button"
+        style="@style/material_button_operator"
+        android:layout_width="0dp"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/module"
-        app:layout_constraintStart_toEndOf="@+id/mb_del"
-        app:layout_constraintTop_toBottomOf="@+id/ed_screen" />
+        app:layout_constraintBottom_toBottomOf="@id/mb_clear"
+        app:layout_constraintEnd_toStartOf="@id/mb_divide"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/mb_del"
+        app:layout_constraintTop_toTopOf="@id/mb_clear" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_divide"
-        style="@style/material_button"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="76dp"
+        style="@style/material_button_operator"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
         android:text="@string/divide"
+        app:layout_constraintBottom_toBottomOf="@id/mb_clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_modules"
-        app:layout_constraintTop_toBottomOf="@id/ed_screen" />
+        app:layout_constraintTop_toTopOf="@id/mb_clear" />
 
+    <!-- Keypad Row 2: 7, 8, 9, * -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_seven"
         style="@style/material_button"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/seven"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintEnd_toStartOf="@id/mb_eight"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mb_clear" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_eight"
         style="@style/material_button"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/Eight"
+        app:layout_constraintBottom_toBottomOf="@id/mb_seven"
+        app:layout_constraintEnd_toStartOf="@id/mb_nine"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_seven"
-        app:layout_constraintTop_toBottomOf="@id/mb_del" />
+        app:layout_constraintTop_toTopOf="@id/mb_seven" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_nine"
         style="@style/material_button"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/Nine"
+        app:layout_constraintBottom_toBottomOf="@id/mb_seven"
+        app:layout_constraintEnd_toStartOf="@id/mb_multiply"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_eight"
-        app:layout_constraintTop_toBottomOf="@id/mb_modules" />
+        app:layout_constraintTop_toTopOf="@id/mb_seven" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_multiply"
-        style="@style/material_button"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
+        style="@style/material_button_operator"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
         android:text="@string/multiply"
+        app:layout_constraintBottom_toBottomOf="@id/mb_seven"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_nine"
-        app:layout_constraintTop_toBottomOf="@id/mb_divide" />
+        app:layout_constraintTop_toTopOf="@id/mb_seven" />
 
+    <!-- Keypad Row 3: 4, 5, 6, - -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_four"
         style="@style/material_button"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/four"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintEnd_toStartOf="@id/mb_five"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mb_seven" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_five"
         style="@style/material_button"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/five"
+        app:layout_constraintBottom_toBottomOf="@id/mb_four"
+        app:layout_constraintEnd_toStartOf="@id/mb_six"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_four"
-        app:layout_constraintTop_toBottomOf="@id/mb_eight" />
+        app:layout_constraintTop_toTopOf="@id/mb_four" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_six"
         style="@style/material_button"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/six"
+        app:layout_constraintBottom_toBottomOf="@id/mb_four"
+        app:layout_constraintEnd_toStartOf="@id/mb_subtract"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_five"
-        app:layout_constraintTop_toBottomOf="@id/mb_nine" />
+        app:layout_constraintTop_toTopOf="@id/mb_four" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_subtract"
-        style="@style/material_button"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
+        style="@style/material_button_operator"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
         android:text="@string/subtract"
+        app:layout_constraintBottom_toBottomOf="@id/mb_four"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_six"
-        app:layout_constraintTop_toBottomOf="@id/mb_multiply" />
+        app:layout_constraintTop_toTopOf="@id/mb_four" />
 
+    <!-- Keypad Row 4: 1, 2, 3, + -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_one"
         style="@style/material_button"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/one"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintEnd_toStartOf="@id/mb_two"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mb_four" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_two"
         style="@style/material_button"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/Two"
+        app:layout_constraintBottom_toBottomOf="@id/mb_one"
+        app:layout_constraintEnd_toStartOf="@id/mb_three"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_one"
-        app:layout_constraintTop_toBottomOf="@id/mb_five" />
+        app:layout_constraintTop_toTopOf="@id/mb_one" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_three"
         style="@style/material_button"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/Three"
+        app:layout_constraintBottom_toBottomOf="@id/mb_one"
+        app:layout_constraintEnd_toStartOf="@id/mb_add"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_two"
-        app:layout_constraintTop_toBottomOf="@id/mb_six" />
+        app:layout_constraintTop_toTopOf="@id/mb_one" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_add"
-        style="@style/material_button"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
+        style="@style/material_button_operator"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
         android:text="@string/Add"
+        app:layout_constraintBottom_toBottomOf="@id/mb_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_three"
-        app:layout_constraintTop_toBottomOf="@id/mb_subtract" />
+        app:layout_constraintTop_toTopOf="@id/mb_one" />
 
+    <!-- Keypad Row 5: ., 0, = -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_dot"
         style="@style/material_button"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/Dot"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintEnd_toStartOf="@id/mb_zero"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mb_one" />
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_zero"
         style="@style/material_button"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:text="@string/Zero"
+        app:layout_constraintBottom_toBottomOf="@id/mb_dot"
+        app:layout_constraintEnd_toStartOf="@id/mb_equal"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/mb_dot"
-        app:layout_constraintTop_toBottomOf="@id/mb_two" />
+        app:layout_constraintTop_toTopOf="@id/mb_dot" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_equal"
         style="@style/equal"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="6dp"
         android:text="@string/Equal"
+        app:layout_constraintBottom_toBottomOf="@id/mb_dot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toEndOf="@id/mb_zero"
-        app:layout_constraintTop_toBottomOf="@id/mb_three" />
+        app:layout_constraintTop_toTopOf="@id/mb_dot" />
 
+    <!-- Guidelines kept for compatibility -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.01" />
-
+        app:layout_constraintGuide_percent="0.00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
