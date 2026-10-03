@@ -12,18 +12,14 @@ import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
-
     TextView ed_screen;
     MaterialButton mb_clear, mb_del, mb_modules, mb_divide, mb_multiply, mb_subtract, mb_add, mb_equal, mb_one, mb_two, mb_three, mb_four, mb_five, mb_six, mb_seven, mb_eight, mb_nine, mb_zero, mb_dot, unit_measure;
-
-    Calculator calculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        calculator = new Calculator();
         ed_screen = findViewById(R.id.ed_screen);
 
         mb_add = findViewById(R.id.mb_add);
@@ -57,16 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        ed_screen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ed_screen.getText().length() < 15) {
-                    Toast.makeText(MainActivity.this, "Character count is less than 15", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
         View.OnClickListener appendListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,41 +60,60 @@ public class MainActivity extends AppCompatActivity {
                 String buttonText = button.getText().toString();
                 String currentText = ed_screen.getText().toString();
 
-
-                if (currentText.length() > 0) {
-                    char lastChar = currentText.charAt(currentText.length() - 1);
-                    if (isOperator(lastChar) && isOperator(buttonText.charAt(0))) {
-                        Toast.makeText(MainActivity.this, "Consecutive operators not allowed", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                if (currentText.length() >= 50) {
+                    Toast.makeText(MainActivity.this, "Character limit reached", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                if (isOperator(buttonText.charAt(0))) {
-                    for (int i = 0; i < currentText.length(); i++) {
-                        if (isOperator(currentText.charAt(i))) {
-                            Toast.makeText(MainActivity.this, "Only two operands allowed at a time", Toast.LENGTH_SHORT).show();
-                            return;
+                boolean isNewOp = Calculator.isOperator(buttonText.charAt(0));
+
+                if (currentText.isEmpty()) {
+                    if (isNewOp) {
+                        if (buttonText.equals("-")) {
+                            ed_screen.append(buttonText);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Cannot start with an operator", Toast.LENGTH_SHORT).show();
+                        }
+                        return;
+                    }
+                    if (buttonText.equals(".")) {
+                        ed_screen.append("0.");
+                        return;
+                    }
+                    ed_screen.append(buttonText);
+                    return;
+                }
+
+                char lastChar = currentText.charAt(currentText.length() - 1);
+
+                if (isNewOp) {
+                    if (Calculator.isOperator(lastChar)) {
+                        // Replace previous operator with the new operator
+                        ed_screen.setText(currentText.substring(0, currentText.length() - 1) + buttonText);
+                    } else {
+                        ed_screen.append(buttonText);
+                    }
+                    return;
+                }
+
+                if (buttonText.equals(".")) {
+                    if (Calculator.isOperator(lastChar)) {
+                        ed_screen.append("0.");
+                        return;
+                    }
+                    // Check if current number segment already has a decimal point
+                    String[] tokens = currentText.split("[+\\-*/%]");
+                    if (tokens.length > 0) {
+                        String currentNum = tokens[tokens.length - 1];
+                        if (currentNum.contains(".")) {
+                            return; // Ignore duplicate decimal in the same number
                         }
                     }
                 }
 
-
-                if (currentText.length() == 0) {
-                    if (buttonText.equals("+") || buttonText.equals("-") || buttonText.equals("*") ||
-                            buttonText.equals("/") || buttonText.equals("%") || buttonText.equals(".")) {
-                        Toast.makeText(MainActivity.this, "Cannot start with an operator", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-
-                if (ed_screen.getText().length() < 15) {
-                    ed_screen.append(buttonText);
-                } else {
-                    Toast.makeText(MainActivity.this, "Character limit reached", Toast.LENGTH_SHORT).show();
-                }
+                ed_screen.append(buttonText);
             }
         };
-
 
         mb_one.setOnClickListener(appendListener);
         mb_two.setOnClickListener(appendListener);
@@ -127,14 +132,12 @@ public class MainActivity extends AppCompatActivity {
         mb_divide.setOnClickListener(appendListener);
         mb_modules.setOnClickListener(appendListener);
 
-
         mb_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String expression = ed_screen.getText().toString();
                 if (!expression.isEmpty()) {
                     calculateResult(expression);
-                    Toast.makeText(MainActivity.this, "Your Result is Here", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -147,62 +150,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         mb_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = ed_screen.getText().toString();
-                if (text.length() > 0) {
+                if (!text.isEmpty()) {
                     ed_screen.setText(text.substring(0, text.length() - 1));
                 }
             }
         });
     }
 
-    private boolean isOperator(char c) {
-        return c == '+' || c == '-' || c == '*' || c == '/' || c == '%';
-    }
-
     private void calculateResult(String expression) {
-        char op = ' ';
-        int opIndex = -1;
+        try {
+            double result = Calculator.evaluate(expression);
 
-        if (expression.contains("+")) {
-            op = '+';
-            opIndex = expression.indexOf('+');
-        } else if (expression.contains("-")) {
-            op = '-';
-            opIndex = expression.indexOf('-');
-        } else if (expression.contains("*")) {
-            op = '*';
-            opIndex = expression.indexOf('*');
-        } else if (expression.contains("/")) {
-            op = '/';
-            opIndex = expression.indexOf('/');
-        } else if (expression.contains("%")) {
-            op = '%';
-            opIndex = expression.indexOf('%');
-        }
-
-        if (opIndex != -1 && opIndex < expression.length() - 1) {
-            try {
-                double no1 = Double.parseDouble(expression.substring(0, opIndex));
-                double no2 = Double.parseDouble(expression.substring(opIndex + 1));
-
-                calculator.setNo1(no1);
-                calculator.setNo2(no2);
-                calculator.setOperator(op);
-
-                double result = calculator.calculate();
-
-                if (result == (long) result) {
-                    ed_screen.setText(String.valueOf((long) result));
-                } else {
-                    ed_screen.setText(String.valueOf(result));
-                }
-            } catch (Exception e) {
+            if (Double.isNaN(result) || Double.isInfinite(result)) {
                 ed_screen.setText("Error");
+                Toast.makeText(this, "Math Error", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            String resultStr;
+            if (result == (long) result) {
+                resultStr = String.valueOf((long) result);
+            } else {
+                resultStr = String.valueOf(result);
+                if (resultStr.contains(".")) {
+                    resultStr = resultStr.replaceAll("0+$", "").replaceAll("\\.$", "");
+                }
+            }
+            ed_screen.setText(resultStr);
+        } catch (ArithmeticException e) {
+            ed_screen.setText("Error");
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            ed_screen.setText("Error");
         }
     }
 }
